@@ -7,6 +7,7 @@ odoo.define('awesome_tshirt.Executioner', function (require) {
     const Button1 = Widget.extend({
         template: 'button1of3',
         events: {
+            // we could have mapped the single html elements to different functions here. So button1 could have been identified by another html-selector than just 'button' and _onClick could be another function defined here.
             'click button': '_onClick',
         },
         init: function (parent) {
