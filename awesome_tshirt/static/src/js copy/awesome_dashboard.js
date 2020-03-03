@@ -13,6 +13,9 @@ const AbstractAction = require('web.AbstractAction');
 const core = require('web.core');
 const fieldUtils = require('web.field_utils');
 
+// Olaf testing
+const MyCounter = require('awesome_tshirt.OlafTest');
+
 const _t = core._t;
 const qweb = core.qweb;
 
@@ -42,11 +45,15 @@ const Dashboard = AbstractAction.extend({
      * @override
      */
     start: function () {
+        console.log('>>> I am dashboard');
         return Promise.all([
             this._render(),
             this._super.apply(this, arguments)
         ]).then(() => {
             this.$('.o_cp_buttons').append(qweb.render('AwesomeDashboard.Buttons'));
+            // Olaf testing
+            const ccounter = new MyCounter(this, 7);
+            ccounter.appendTo("div");
         });
     },
     /**

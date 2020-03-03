@@ -19,9 +19,16 @@ const MyCounter = Widget.extend({
      * @override
      */
     init: function () {
+        console.log ('>>> I am counter - init.');
         this.value = 0;
         this._super.apply(this, arguments);
     },
+
+    start: function () {
+        console.log ('>>> I am counter - start');
+    },
+
+
 
     //--------------------------------------------------------------------------
     // Handlers
@@ -46,6 +53,9 @@ const MyCounter = Widget.extend({
         this.renderElement();
     },
 });
+
+const core = require('web.core');
+core.action_registry.add('awesome_tshirt.my_counter', MyCounter);
 
 return MyCounter;
 

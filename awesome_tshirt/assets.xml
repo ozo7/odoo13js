@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <template id="assets_backend" name="awesome tshirt assets backend" inherit_id="web.assets_backend">
+    <template id="assets_backend" name="awesome tshirt assets backend" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/olaf_test.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/awesome_dashboard.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/chart_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/customer_form_view.js"/>
@@ -10,10 +11,8 @@
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/order_kanban_view.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/image_preview_widget.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/late_widget.js"/>
-            <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/quick_order_navigation.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/warning_widget.js"/>
-
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/form_view.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/image_preview_widget.scss"/>
@@ -22,7 +21,6 @@
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/quick_order_navigation.scss"/>
         </xpath>
     </template>
-
     <template id="qunit_suite" name="awesome_shirt_tests" inherit_id="web.qunit_suite">
         <xpath expr="//t[@t-set='head']" position="inside">
             <script type="text/javascript" src = "/awesome_tshirt/static/tests/my_counter_tests.js"/>

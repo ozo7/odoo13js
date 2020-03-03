@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<div t-name="olaftest.template">
+
+    <span class="val"><t t-esc="widget.count"/></span>
+    <button class="btn btn-icon fa fa-plus">Increase</button>
+</div>
+
+</templates>

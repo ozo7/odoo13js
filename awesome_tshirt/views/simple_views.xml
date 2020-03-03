@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="simple_action" model="ir.actions.act_window">
+        <field name="name">Orders - Simple</field>
+        <field name="res_model">awesome_tshirt.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+            id="root_menu"
+            name="Awesome Tshirt"
+            web_icon="awesome_tshirt,static/description/icon.png"
+            action="awesome_tshirt.simple_action"
+    />
+</odoo>

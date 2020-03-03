@@ -24,6 +24,7 @@ const ChartWidget = Widget.extend({
      * @override
      */
     start: function () {
+        console.log('>>> This is chart_widget.js');
         this._renderChart();
         return this._super.apply(this, arguments);
     },
