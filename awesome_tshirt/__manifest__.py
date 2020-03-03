@@ -31,5 +31,6 @@
         # 'static/src/xml/quick_order_navigation.xml',
         # 'static/src/xml/warning_widget.xml',
         # 'static/src/xml/olaftest.xml',
+        'static/src/xml/3buttons.xml',
     ]
 }

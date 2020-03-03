@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="whateverXXXLLL" xml:space="preserve">
+
+<div t-name="button1of3">
+<button t-name="button1">button1</button>
+</div>
+<div t-name="button2of3">
+<button t-name="button2">button2</button>
+</div>
+<div t-name="button3of3">
+<button t-name="button3">button3</button>
+</div>
+
+</templates>
