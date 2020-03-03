@@ -19,6 +19,7 @@
         # 'views/templates.xml',
         'views/simple_views.xml',
         'views/new_assets.xml',
+        'views/client_actions.xml',
     ],
     'license': 'AGPL-3',
     'qweb': [
