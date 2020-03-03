@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import random
-
 from odoo import models
 
 
@@ -18,4 +17,8 @@ class IrHttp(models.AbstractModel):
             result['home_menu_message'] = "Bafien is watching you"
         else:
             result['home_menu_message'] = "Bafien is totally sane. Also, please work harder."
+
+        # put more info on the web session
+        result['zzinfo'] = "I am just a useless additional info."
+
         return result

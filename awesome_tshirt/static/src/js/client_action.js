@@ -16,7 +16,10 @@ odoo.define('awesome_tshirt.Executioner', function (require) {
         _onClick: function () {
             console.log('>>> Button1 clicked.');
             // $receivingDiv.innerHTML = "this is button 1.";
-            $("div#receivingDiv").html("this is button 1.");
+            //$("div#receivingDiv").html("this is button 1.");
+            const session = require('web.session');
+            let $additionalInfo = session.zzinfo;
+            $("div#receivingDiv").html("the additional info is: " + $additionalInfo);
         }
     });
 
