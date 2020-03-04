@@ -15,12 +15,12 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
     const oDashboard = AbstractAction.extend({
         hasControlPanel: true,
         events: {
-        //     'click .o_new_orders_btn': '_onOpenNewOrders',
+            'click .o_new_orders_btn': '_onOpenNewOrders',
             'click .o_customers_btn': '_onOpenCustomers',
-        //     'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
-        // },
-        // custom_events: {
-        //     open_orders: '_onOpenOrders',
+            'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
+            // },
+            // custom_events: {
+            //     open_orders: '_onOpenOrders',
         },
 
 
@@ -82,6 +82,36 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
         _onOpenCustomers: function () {
             this.do_action('base.action_partner_customer_form');
         },
+        /**
+        * @private
+        */
+        _onOpenCancelledOrders: function () {
+            return this.do_action({
+                name: 'olaf cancelled orders',
+                res_model: 'awesome_tshirt.order',
+                type: 'ir.actions.act_window',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', '=', 'cancelled'],
+                    ['create_date', '>=', '2019-12-24']
+                ],
+            });
+        },
+        /**
+        * @private
+        */
+        _onOpenNewOrders: function () {
+            return this.do_action({
+                name: 'olaf new orders',
+                res_model: 'awesome_tshirt.order',
+                type: 'ir.actions.act_window',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['create_date', '>=', '2019-12-24'],
+                    ['state', '=', 'new']
+                ],
+            });
+        },
 
     });
 
@@ -89,4 +119,4 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
 
     return oDashboard;
 
-    });
+});
