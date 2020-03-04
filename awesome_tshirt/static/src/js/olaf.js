@@ -31,11 +31,15 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
             console.log("oDashboard start");
             const oCounter = new MyCounter();
             oCounter.appendTo($('body'));
+            // before rendering we must guarantee that the data has been fetched from the backend.
             return Promise.all([
-                //this._render(),
-                this._super.apply(this, arguments)
+                // Olaf: this is urgently needed and needs to complete before other things happen:
+                this._super.apply(this, arguments),
+                // Olaf: if this is not put here, the error is that the widget passed to the rendering qweb object is then undefined!
+                this._loadStatistics(),
             ]).then(() => {
                 this.$('.o_cp_buttons').append(qweb.render('o3buttons'));
+                this.$('.o_content').html(qweb.render('oNumbers', { widget: this }));
             });
         },
         /**
@@ -72,6 +76,20 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
         //--------------------------------------------------------------------------
         // Private
         //--------------------------------------------------------------------------
+        /**
+        * @private
+        * @returns {Promise} resolved when the statistics have been fetched
+        */
+        _loadStatistics: function () {
+            return this._rpc({
+                route: '/awesome_tshirt/statistics',
+            }).then((stats) => {
+                console.log(stats);
+                // stats.average_time = fieldUtils.format.float_time(stats.average_time);
+                this.stats = stats;
+            });
+        },
+
         //--------------------------------------------------------------------------
         // Handlers
         //--------------------------------------------------------------------------
