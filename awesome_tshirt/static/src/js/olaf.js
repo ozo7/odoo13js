@@ -14,14 +14,14 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
 
     const oDashboard = AbstractAction.extend({
         hasControlPanel: true,
-        // events: {
+        events: {
         //     'click .o_new_orders_btn': '_onOpenNewOrders',
-        //     'click .o_customers_btn': '_onOpenCustomers',
+            'click .o_customers_btn': '_onOpenCustomers',
         //     'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
         // },
         // custom_events: {
         //     open_orders: '_onOpenOrders',
-        // },
+        },
 
 
         /**
@@ -77,8 +77,11 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
         //--------------------------------------------------------------------------
 
         /**
-         * @private
-         */
+        * @private
+        */
+        _onOpenCustomers: function () {
+            this.do_action('base.action_partner_customer_form');
+        },
 
     });
 
