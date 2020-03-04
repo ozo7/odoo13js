@@ -20,7 +20,7 @@ const MyCounter = Widget.extend({
      */
     init: function () {
         this.value = 0;
-        this._super.apply(this, arguments);
+        //this._super.apply(this, arguments);
     },
 
     //--------------------------------------------------------------------------

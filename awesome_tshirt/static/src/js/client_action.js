@@ -1,0 +1,143 @@
+odoo.define('awesome_tshirt.Executioner', function (require) {
+    "use strict";
+
+    const AbstractAction = require('web.AbstractAction');
+    const Widget = require('web.Widget');
+    const ControlPanelMixin = require('web.ControlPanelMixin');
+
+
+    const Button1 = Widget.extend({
+        template: 'button1of3',
+        events: {
+            // we could have mapped the single html elements to different functions here. So button1 could have been identified by another html-selector than just 'button' and _onClick could be another function defined here.
+            'click button': '_onClick',
+        },
+        init: function (parent) {
+            this._super(parent);
+            console.log('>>> I am Button1.');
+        },
+        _onClick: function () {
+            console.log('>>> Button1 clicked.');
+            // $receivingDiv.innerHTML = "this is button 1.";
+            //$("div#receivingDiv").html("this is button 1.");
+            const session = require('web.session');
+            let $additionalInfo = session.zzinfo;
+            $("div#receivingDiv").html("the additional info is: " + $additionalInfo);
+        }
+    });
+
+    // TODO: not working
+    const Button2 = Widget.extend({
+        template: 'button2of3',
+        events: {
+            'click button': '_onClick',
+        },
+        init: function (parent) {
+            this._super(parent);
+            console.log('>>> I am Button2.');
+        },
+        _onClick: function () {
+            console.log('>>> Button2 clicked.');
+            // $("div#receivingDiv").html("this is button 2.");
+            return this.do_action({
+                name: 'I am action.',
+                type: 'ir.actions.act_window',
+                res_model: 'awesome_tshirt.order',
+                views: [[false, 'tree']],
+                target: 'current',
+                context: {},
+            }).then((response) => {
+                console.log(response);
+            });
+
+        }
+    });
+
+    const Button3 = Widget.extend({
+        template: 'button3of3',
+        events: {
+            'click button': '_onClick',
+        },
+        init: function (parent) {
+            this._super(parent);
+            console.log('>>> I am Button3.');
+        },
+        _onClick: function () {
+            console.log('>>> Button3 clicked.');
+            // $receivingDiv.innerHTML = "this is button 1.";
+            return this._rpc({
+                route: '/awesome_tshirt/slug01',
+            }).then((response) => {
+                $("div#receivingDiv").html(" response is" +  " : " + response);
+            });
+
+
+        }
+    });
+
+
+    const ClientAction = AbstractAction.extend( ControlPanelMixin, {
+        // OK -- is this working and actually triggered by the menu item?
+
+
+    /**
+     * Override to load the statistics.
+     *
+     * @override
+     */
+    willStart: function () {
+        return Promise.all([
+            this._super.apply(this, arguments)
+        ]);
+    },
+    /**
+     * @override
+     */
+    start: function () {
+        console.log('>>> I am Executioner from client_action');
+        //const Testing = require('awesome_tshirt.Simple');
+        //const oTesting = new Testing();
+
+        //this.do_more(); // just adding one button to the page
+        return Promise.all([
+            this._super.apply(this, arguments)
+        ]).then(() => {
+            this.create3Buttons();
+        });
+    },
+
+
+    create3Buttons: function() {
+        // putting a changing area on the web page
+        let $receivingDiv
+        if ($("div#receivingDiv").length == 0){
+            $receivingDiv = $('<div id="receivingDiv"></div/>');
+            $receivingDiv.appendTo($("body"));
+        } else {
+            $receivingDiv = $("div#receivingDiv");
+        }
+        $("div#receivingDiv").html("I am here.");
+
+        const oButton1 = new Button1();
+        const oButton2 = new Button2();
+        const oButton3 = new Button3();
+        oButton1.appendTo($('div.o_action_manager'));
+        oButton2.appendTo($('div.o_action_manager'));
+        oButton3.appendTo($('div.o_action_manager'));
+    },
+
+    do_more: function () {
+        //alert('doing more.');
+        const $inputButton = $('<input type="button" value="new button" />');
+        $inputButton.prependTo($("body"));
+    }
+
+    });
+
+    // do not forget to register the new module in the Odoo framework
+    const core = require('web.core');
+    core.action_registry.add('awesome_tshirt.Executioner', ClientAction);
+
+
+
+});

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- views -->
+
+
+    <!-- actions -->
+
+    <record model="ir.actions.client" id="o7dashboard">
+      <field name="name">oDashboard</field>
+      <field name="tag">awesome_tshirt.odashboard</field>
+    </record>
+
+    <!-- menu items -->
+    <menuitem name="oDashboard" id="awesome_tshirt.odashboard_menu" parent="awesome_tshirt.menu_root" action="awesome_tshirt.o7dashboard" sequence="3"/>
+
+</odoo>

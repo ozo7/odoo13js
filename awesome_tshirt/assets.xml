@@ -13,6 +13,7 @@
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/my_counter.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/quick_order_navigation.js"/>
             <script type="text/javascript" src="/awesome_tshirt/static/src/js/warning_widget.js"/>
+            <script type="text/javascript" src="/awesome_tshirt/static/src/js/olaf.js"/>
 
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/awesome_dashboard.scss"/>
             <link rel="stylesheet" type="text/scss" href="/awesome_tshirt/static/src/scss/form_view.scss"/>

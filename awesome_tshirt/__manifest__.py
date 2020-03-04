@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'views/awesome_tshirt_views.xml',
         'views/templates.xml',
+        'views/olaf.xml',
     ],
     'license': 'AGPL-3',
     'qweb': [
@@ -27,5 +28,6 @@
         'static/src/xml/order_kanban_view.xml',
         'static/src/xml/quick_order_navigation.xml',
         'static/src/xml/warning_widget.xml',
+        'static/src/xml/olaf.xml',
     ]
 }
