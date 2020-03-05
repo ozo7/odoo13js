@@ -18,9 +18,10 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
             'click .o_new_orders_btn': '_onOpenNewOrders',
             'click .o_customers_btn': '_onOpenCustomers',
             'click .o_cancelled_orders_btn': '_onOpenCancelledOrders',
-            // },
-            // custom_events: {
-            //     open_orders: '_onOpenOrders',
+        },
+        custom_events: {
+            // This function catches the "bubbled up" event that looks for this function. The event listener can be implemented on any component that this object here has, like the ChartWidget.
+            open_orders: '_onOpenOrders',
         },
 
 
@@ -40,6 +41,9 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
             ]).then(() => {
                 this.$('.o_cp_buttons').append(qweb.render('o3buttons'));
                 this.$('.o_content').html(qweb.render('oNumbers', { widget: this }));
+                // TODO: continue here
+                const chart = new ChartWidget(this, this.stats.orders_by_size);
+                chart.appendTo(this.$('.o_fancy_chart'));
             });
         },
         /**
@@ -89,6 +93,26 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
                 this.stats = stats;
             });
         },
+        /**
+         * Opens the orders of t-shirt of the given size.
+         *
+         * @private
+         * @param {OdooEvent} ev
+         * @param {string} ev.data.size
+         */
+        _onOpenOrders: function (ev) {
+            console.log('who clicked me?');
+            let my_size = ev.data.size.toLowerCase();
+            console.log(ev);
+            console.log(my_size);
+            return this.do_action({
+                name: 'someone called me?',
+                res_model: 'awesome_tshirt.order',
+                type: 'ir.actions.act_window',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['size', '=', my_size]]
+            });
+        },
 
         //--------------------------------------------------------------------------
         // Handlers
@@ -130,6 +154,7 @@ odoo.define('awesome_tshirt.odashboard', function (require) {
                 ],
             });
         },
+
 
     });
 

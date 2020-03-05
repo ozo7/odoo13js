@@ -9,6 +9,7 @@ odoo.define('awesome_tshirt.ChartWidget', function (require) {
 const Widget = require('web.Widget');
 
 const ChartWidget = Widget.extend({
+    // for putting on the site we define a template or a tagName. tagName will specify the HTML element. The HTML string for display needs to be assigned to the this.el property of this widget.
     tagName: 'canvas',
     jsLibs: ['/awesome_tshirt/static/lib/chart.js/Chart.js'],
 
@@ -61,6 +62,7 @@ const ChartWidget = Widget.extend({
                 }]
             },
             options: {
+                // binding an event to 'this'.
                 onClick: this._onChartClicked.bind(this),
             },
         });
@@ -77,6 +79,7 @@ const ChartWidget = Widget.extend({
      */
     _onChartClicked: function (ev, chartElements) {
         if (chartElements && chartElements.length) {
+            // open_orders is the method called. trigger_up will look for that method in the objects in which this widget here has been created. In this case it will be the Dashboard that instantiated and hold this ChartWidget and it hold the function that is called by the event.
             this.trigger_up('open_orders', {
                 size: this.sizes[chartElements[0]._index],
             });
